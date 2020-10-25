@@ -1,0 +1,28 @@
+{% load bootstrap3 %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% if title %}
+    <title>Project Awwards - {{title}}</title>
+    {% else %}
+      <title> Project Awwards </title>
+    {% endif %}
+    
+    {% block styles %}
+      {% bootstrap_css %}
+    {% endblock %}
+    <title>Project Awwards</title>
+  </head>
+  <body>
+    {% include 'navbar.html' %} 
+    {% block content %} {%endblock%}
+  
+    {% block scripts %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     {% bootstrap_javascript %}
+    {% endblock %}
+  </body>
+</html>

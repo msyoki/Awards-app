@@ -12,7 +12,25 @@
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
-
+      <div class="container" >
+        {% if user.is_authenticated %}
+        <div class='navbar-right'style="padding: 20px;">
+          <span style="font-weight: bold;">
+          <div class="" role="menu">
+            <a href="{%url 'home'%}">Home</a>
+            <a href="/accounts/password/change">Change Password</a>
+            <a href="/logout">Logout</a> 
+          </div>
+          </span>
+            {% else %}
+          <span style="font-weight: bold;">
+          <div class='navbar-right'style="padding: 20px;">
+              <a href="/accounts/login">Login</a>
+          </div>
+          </span>
+        </div>
+        {% endif %}
+      </div>
     </div>
   </div>
 
