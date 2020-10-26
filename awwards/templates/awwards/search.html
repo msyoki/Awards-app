@@ -1,0 +1,30 @@
+
+{% extends 'base.html' %}
+{% block content %}
+    {{block.super}} 
+<div class="container">
+    <div class="row">
+        {% if projects%}
+            <h2>Found {{ projects|length }} projects: {{message}}</h2>
+        {% else %}
+            <h2> Found 0 projects by the search term: {{message}}</h2>
+        {% endif %}
+
+    </div>
+    <div class="row">
+        {% for project in projects %}
+        <div class="col-lg-4 col-lg-4 col-lg-4">
+            <div class="card" >
+                <img src="{{project.webimage.url}}"  class="card-img-top" alt="{{project.name}}"  >
+                <div class="container">
+                    <h5 >{{project.name}}</h5>
+                    <p >{{project.description}}</p>
+                    <a href="http://{{project.link}}">visit site</a><br>
+                    <a href="/awwards/project/{{project.id}}" target="_blank">Score/rate</a><br><br>
+                </div>
+            </div>
+        </div>
+        {% endfor %} 
+    </div>  
+</div>
+{%endblock%}

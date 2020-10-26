@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div id="container">
+    {% if user %}
+    
+    <h4><strong>Contacts:</strong> </h4>
+    <h3>{{user.username}}</h3>
+    <a href="/accounts/password/change">Change Password</a>
+    {% endif %}
+
+</div>
+
+
+
+{%endblock%}

@@ -1,3 +1,4 @@
+{% load bootstrap3 %}
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -8,24 +9,35 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/"><span style="font-family: 'Lobster', cursive;font-size: x-large;">Project Awards</a>
+      <a class="navbar-brand" href="/"><span style="font-family: 'Lobster', cursive;font-size: x-large;">Awwards</a>
+      <a class="navbar-brand"  href="/"><small style="padding-right: 10px;font-weight: bold;">Home</small></a>
+     
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
+      
+ 
+    <!-- search form end -->
       <div class="container" >
         {% if user.is_authenticated %}
         <div class='navbar-right'style="padding: 20px;">
           <span style="font-weight: bold;">
           <div class="" role="menu">
-            <a href="{%url 'home'%}">Home</a>
-            <a href="/accounts/password/change">Change Password</a>
-            <a href="/logout">Logout</a> 
+            <small style="padding-right: 10px;">Welcome <a href="awwards/profile/{{user.id}}">{{user.username}}</a></small>
+            
+            
+            <a class="btn btn-sm btn-danger" href="/logout">Logout</a> 
           </div>
           </span>
             {% else %}
           <span style="font-weight: bold;">
           <div class='navbar-right'style="padding: 20px;">
-              <a href="/accounts/login">Login</a>
+              <a class="btn btn-sm btn-warning" href="/accounts/login">Login</a>
+
+              <a  class="btn btn-sm btn-warning" href="/accounts/register">Sign Up</a>
+          </div>
+          <div class='navbar-right'style="padding: 20px;">
+            
           </div>
           </span>
         </div>
