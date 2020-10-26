@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
@@ -6,6 +6,7 @@ from .models import Profile,Project
 from .forms import NewProjectForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+
 # Create your views here.
 def home(request):
     projects=Project.objects.all()
@@ -45,8 +46,7 @@ def new_project(request):
             project = form.save(commit=False)
             project.user = current_user
             project.save()
-            projects=Project.objects.all()
-        return render(request,'awwards/home.html', {'projects':projects})
+        return redirect('home')
         
     else:
         form = NewProjectForm()
