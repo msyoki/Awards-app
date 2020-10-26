@@ -6,7 +6,10 @@ from . import views
 
 urlpatterns=[
     url(r'^$',views.home,name='home'),
-    
+    url(r'awwards/project/(\d+)',views.rate_project,name='rate-project'),
+    url(r'awwards/profile/(\d+)',views.view_profile,name='view-profile'),
+    url(r'^search/', views.search_project, name='search_project'),
+    url(r'^new/project$', views.new_project, name='new_project'),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
