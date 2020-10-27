@@ -7,6 +7,11 @@ from .forms import NewProjectForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
+
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializer import ProfileSerializer,ProjectSerializer
+
 # Create your views here.
 def home(request):
     projects=Project.objects.all()
@@ -51,3 +56,17 @@ def new_project(request):
     else:
         form = NewProjectForm()
     return render(request, 'awwards/new_project.html', {"form":form, "current_user":current_user})
+
+
+class ProfileList(APIView):
+    def get(self, request, fromat=None):
+        all_profiles =Profile.objects.all()
+        serializers = ProfileSerializer(all_profiles, many=True)
+        return Response(serializers.data)
+
+
+class ProjectList(APIView):
+    def get(self, request, fromat=None):
+        all_projects =Project.objects.all()
+        serializers =ProjectSerializer(all_projects, many=True)
+        return Response(serializers.data)
