@@ -1,12 +1,16 @@
 from django.test import TestCase
 from .models import Profile,Project
+from django.contrib.auth.models import User
+
 # Create your tests here.
 class ProfileTest(TestCase):
     def setUp(self):
         '''
         run before test
         '''
-        self.profile1=Profile(name='Musyoki',bio='Software developer at Moringa School',email='msyokimutua@gmail.com')
+        user1=User(username='msyoki')
+        user1.save()
+        self.profile1=Profile(user=user1,bio='Software developer at Moringa School',email='msyokimutua@gmail.com')
 
     def test_instance(self):
         '''
@@ -29,7 +33,11 @@ class ProjectTest(TestCase):
         '''
         run before test
         '''
-        self.project1=Project(name='project1',description='This is a description of a test project',link='www.testproject.com')
+        user1=User(username='msyoki')
+        user1.save()
+        profile1=Profile(user=user1,bio='Software developer at Moringa School',email='msyokimutua@gmail.com')
+        profile1.save()
+        self.project1=Project(profile=profile1,name='project1',description='This is a description of a test project',link='www.testproject.com')
 
     def test_instance(self):
         '''
@@ -45,3 +53,12 @@ class ProjectTest(TestCase):
         self.project1.save()
         projects=Project.objects.all()
         self.assertTrue(len(projects)>=1)
+
+    def test_search(self):
+        '''
+        test search method for project search
+        '''
+        self.project1.save()
+        search_term='pro'
+        search_project=Project.search_by_name(search_term)
+        self.assertTrue(len(search_project)==1)
