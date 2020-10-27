@@ -3,6 +3,7 @@ from .models import Profile,Project
 from django.contrib.auth.models import User
 
 # Create your tests here.
+
 class ProfileTest(TestCase):
     def setUp(self):
         '''
@@ -14,14 +15,14 @@ class ProfileTest(TestCase):
 
     def test_instance(self):
         '''
-        test profile object initialization
+        test profile object initialization 
         '''
         self.assertTrue(isinstance(self.profile1,Profile))
 
 
     def test_save(self):
         '''
-        test profile save method
+        test profile save 
         '''
         self.profile1.save()
         profiles=Profile.objects.all()
@@ -38,6 +39,7 @@ class ProjectTest(TestCase):
         profile1=Profile(user=user1,bio='Software developer at Moringa School',email='msyokimutua@gmail.com')
         profile1.save()
         self.project1=Project(profile=profile1,name='project1',description='This is a description of a test project',link='www.testproject.com')
+    
 
     def test_instance(self):
         '''
@@ -48,7 +50,7 @@ class ProjectTest(TestCase):
 
     def test_save(self):
         '''
-        test profile save method
+        test project save 
         '''
         self.project1.save()
         projects=Project.objects.all()
@@ -56,9 +58,9 @@ class ProjectTest(TestCase):
 
     def test_search(self):
         '''
-        test search method for project search
+        test search method for project search method
         '''
         self.project1.save()
-        search_term='pro'
-        search_project=Project.search_by_name(search_term)
-        self.assertTrue(len(search_project)==1)
+        search_term='p'
+        search_projects=Project.search_by_name(search_term)
+        self.assertTrue(len(search_projects)==1 )

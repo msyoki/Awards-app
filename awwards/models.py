@@ -13,7 +13,7 @@ class Profile(models.Model):
 
 class Project(models.Model):
     webimage= models.ImageField(upload_to='webimage/',null=True)
-    user = models.ForeignKey(User,on_delete=models.CASCADE, null=True)
+    profile = models.ForeignKey(Profile,on_delete=models.CASCADE, null=True)
     name= models.CharField(max_length=70)
     description= models.TextField()
     link= models.CharField(max_length=200)
