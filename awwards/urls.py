@@ -12,6 +12,7 @@ urlpatterns=[
     url(r'^new/project$', views.new_project, name='new_project'),
     url(r'^api/profile/$', views.ProfileList.as_view()),
     url(r'^api/project/$', views.ProjectList.as_view()),
+    url(r'^api/page/$',views.api_page,name='api-page'),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

@@ -57,6 +57,9 @@ def new_project(request):
         form = NewProjectForm()
     return render(request, 'awwards/new_project.html', {"form":form, "current_user":current_user})
 
+def api_page(request):
+    return render(request,'awwards/api_page.html')
+
 
 class ProfileList(APIView):
     def get(self, request, fromat=None):
