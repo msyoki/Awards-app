@@ -56,7 +56,8 @@ def new_project(request):
     else:
         form = NewProjectForm()
     return render(request, 'awwards/new_project.html', {"form":form, "current_user":current_user})
-
+    
+@login_required(login_url='/accounts/login/')   
 def api_page(request):
     return render(request,'awwards/api_page.html')
 
