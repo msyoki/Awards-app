@@ -3,25 +3,25 @@
 {% block content %}
     {{block.super}} 
 <div class="container">
-    <div class="row">
+    <div class="row" style="font-family: Arial, Helvetica, sans-serif;color:#535250">
         {% if projects%}
-            <h2>Found {{ projects|length }} projects: {{message}}</h2>
+            <h3>Found {{ projects|length }} projects: {{message}}</h3>
         {% else %}
-            <h2> Found 0 projects by the search term: {{message}}</h2>
+            <h3> Found 0 projects by the search term: {{message}}</h3>
         {% endif %}
 
-    </div>
+    </div><br>
     <div class="row">
         {% for project in projects %}
         <div class="col-lg-4 col-lg-4 col-lg-4">
-            <div class="card" >
-                <img src="{{project.webimage.url}}"  class="card-img-top" alt="{{project.name}}"  >
-                <div class="container">
-                    <h5 >{{project.name}}</h5>
-                    <a href="http://{{project.link}}">visit site</a><br>
-                    <a href="/awwards/project/{{project.id}}" target="_blank">Score/rate</a><br><br>
+            <div class="card ">
+                <img src="{{project.webimage.url}}"  class="card-img-top img-fluid" alt="{{project.name}}" >
+                <div class="card-text text-center" style="padding: 20px;">
+                    <h4 style="font-weight: bold;">{{project.name}}</h4>
+                    <a class="btn btn-info" style="border-radius: 25px;" href="/awwards/project/{{project.id}}" target="_blank">Project details & Rating</a><br><br>
                 </div>
             </div>
+  
         </div>
         {% endfor %} 
     </div>  

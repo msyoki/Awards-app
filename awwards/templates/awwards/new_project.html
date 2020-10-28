@@ -1,17 +1,31 @@
-{% extends 'base.html' %}
+{% extends 'registration/base.html' %}
 {% load bootstrap3 %} {% load staticfiles %}
 {% block content %}
-<div class="container" style="padding: 20px;">
-        <div class="row" >
-            <div class="container" >
-                <h2 class="text-center" style="font-weight: bold;">New Project</h2>
-                <form  action="" method="post" enctype="multipart/form-data">
-                    {%csrf_token%}
-                    {% bootstrap_form form%}
-                    <input type="submit" class="btn btn-success" value="Upload">
-                </form>
+<div class="container">
+    <div class="row">
+      <!-- Empty div -->
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="panel panel-default">
+    
+                <div class="panel-heading">
+                    <h2 class="text-center" style="font-weight: bold;">Submit Project</h2>
+                </div>
+                <div class="panel-body" style="padding: 40px;">
+                    <form  action="" method="post" enctype="multipart/form-data" >
+                        {%csrf_token%}
+                        {% bootstrap_form form%}
+                        <input type="submit" class="btn btn-success" value="Submit">
+                    </form>
+                </div>
+  
             </div>
         </div>
+        <!-- empty div -->
+        <div class="col-md-2"></div>
     </div>
 </div>
 {%  endblock %}
+
+
+
