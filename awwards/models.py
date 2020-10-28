@@ -11,6 +11,9 @@ class Profile(models.Model):
     def save_profile(self):
         self.save()
 
+    def __str__(self):
+        return self.user.username
+
 class Project(models.Model):
     webimage= models.ImageField(upload_to='webimage/',null=True)
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE, null=True)

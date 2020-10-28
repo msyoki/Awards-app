@@ -1,22 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
 {{block.super}}
-    <div style="background-color: white;padding: 10px;">
+    <div style="padding:30px">
         <p class=" text-center text-muted" style="font-weight: bold;">The awards of design, creativity and innovation on the internet </p>
   
     </div>
     <div class="hero-image" >
         <div class="hero-text">
-            <h1 style="font-family: 'Calistoga', cursive;">Awwards</h1><br>
-            <a class="btn btn-lg btn-success" style="border-radius: 25px;" href="{% url 'new_project' %}">SUBMIT YOUR SITE!</a><br><br>
+            <h1 style="font-family: 'Calistoga', cursive;color:white;">Awwards</h1><br>
             <p >Web Design Rating and Review</p><hr>
-            <h4 style="font-weight: bold;"> DESIGN - USABILITY - CONTENT</h4><br>
-            
-        </div>
-    </div class="container" >
-        
-        <div class="text-center container" style="padding:30px">
-            <p class="text-center text-muted"><strong> Search for a project here:</strong></p>
+            <h4 style="font-weight: bold;color:white;"> Content - Usability - Content</h4><br>
             <form class="navbar-form" role="search" action="{% url 'search_project' %}">
                 <div class="input-group ">
                     <input input type="text" class="form-control" placeholder="Search Project" name="project" >
@@ -25,13 +18,22 @@
                     </div>
                 </div>
             </form>
+ 
+            
+        </div>
+    </div class="container" >
+        
+        <div class="text-center container" style="padding:30px">
+            <h4 style="font-weight: bold;"> Allow our panel of users to review your site today!</h4><br>
+            <a class="btn btn-lg btn-success" style="border-radius: 25px;" href="{% url 'new_project' %}">Submit Your Site!</a><br> 
         </div><hr>
         <div class="container">
             <h5 class="text-uppercase font-weight-bold"><strong> Nominees</strong> We need your vote!</h5>
         </div>
-        {% for project in projects %}
+        
         <div class="container">
-            <h3 style="color:#535250;text-align:center;"><strong>Submitted </strong> Sites </h3><br>
+            <h3 style="color:#535250;text-align:center;"><strong>Submitted </strong> Sites </h3><br><br>
+            {% for project in projects %}
             <div class="col-lg-4 col-lg-4 col-lg-4">
                 <div class="card ">
                     <img src="{{project.webimage.url}}"  class="card-img-top img-fluid" alt="{{project.name}}" >
@@ -41,8 +43,9 @@
                     </div>
                 </div>
             </div>
-        </div>
-        {% endfor %}
+            {% endfor %}
+        </div><br><br>
+        
     </div>
 
 

@@ -9,10 +9,12 @@
     transition: 0.3s;
     border-radius: 5px;
     margin-bottom: 20px;
+ 
+}
 
 
-    
-    
+.card-text{
+    background-color: white;
 }
   
 .card:hover {
@@ -60,8 +62,12 @@ border-radius: 5px 5px 0 0;
   }
 
   body { 
-    padding-top: 110px; 
+    padding-top: 110px;
+    background-color: #fbfbff; 
 
 }
 
 
+h1,h2,h3,h4{
+    color:#535250;
+}
