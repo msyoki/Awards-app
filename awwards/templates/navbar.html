@@ -24,7 +24,9 @@
         <div class='navbar-right'style="padding: 20px;">
           <span style="font-weight: bold;">
           <div class="" role="menu">
-            <small style="padding-right: 10px;">Welcome  <a href="awwards/profile/{{user.id}}" style="color: #0081a7;">{{user.username}}</a></small>
+            <img src="{{request.user.profile.profile_pic.url}}" alt="" width="25px" height="25px" style="border-radius: 50%;">
+            <small style="padding-right: 10px;">Welcome  <a href="/awwards/profile/{{user.id}}" style="color: #0081a7;">{{user.username}}</a></small>
+
             
             
             <a class="btn btn-info" style="border-radius: 25px;" href="/logout">Logout</a> 
@@ -36,7 +38,7 @@
               <small style="margin-right:10px">Are you a member?</small>
               <a style="color: #0096c7; margin-right:10px" href="/accounts/login">Login</a>
 
-              <a  class="btn btn-sm btn-info" style="border-radius: 25px;" href="/accounts/register">Sign Up</a>
+              <a  class="btn btn-sm btn-info" style="border-radius: 25px;" href="{% url 'register' %}">Sign Up</a>
           </div>
           <div class='navbar-right'style="padding: 20px;">
             

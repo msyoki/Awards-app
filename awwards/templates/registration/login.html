@@ -11,12 +11,12 @@
       {% bootstrap_form form%}
 
       <div class="form-group">
-        <input type="submit" class="btn  btn-info " value="Login">
+        <button type="submit" class="btn btn-primary ">Sign In</button><br>
       </div>
 
       <input type="hidden" name="next" value="{{next}}">
 
-      Don't have an account? <a href="/accounts/register"><span style="color: white;font-weight:bold"> Sign up</span></a>
+      Don't have an account? <a href="{% url 'register' %}"><span style="color: white;font-weight:bold"> Sign up</span></a>
 
     </form>  
 
