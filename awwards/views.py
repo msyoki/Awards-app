@@ -3,12 +3,13 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from .models import Profile,Project
-from .forms import NewProjectForm
+from .forms import NewProjectForm,ProfileForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
-
+from rest_framework import status
 from rest_framework.response import Response
+
 from rest_framework.views import APIView
 from .serializer import ProfileSerializer,ProjectSerializer
 
@@ -26,7 +27,24 @@ def rate_project(request,project_id):
 def view_profile(request,user_id):
     Current_user=request.user
     user=User.objects.get(id=user_id)
+   
     return render(request,"awwards/profile.html",{"user":user})
+
+
+# def update_profile(self,user_id):
+#     Current_user=request.user
+#     user=User.objects.get(id=user_id)
+    
+#         if request.method == 'POST':
+#             form = ProfileForm(request.POST, request.FILES)
+#             if form.is_valid():
+#                 profile = form.save()
+#                 profile.save()
+#         return redirect('view-profile')
+#         else:
+#             form = ProfileForm()
+#         return render(request,"awwards/update_profile.html",{"form":form})
+
 
 @login_required(login_url='/accounts/login/') 
 def search_project(request):
@@ -74,3 +92,36 @@ class ProjectList(APIView):
         all_projects =Project.objects.all()
         serializers =ProjectSerializer(all_projects, many=True)
         return Response(serializers.data)
+
+
+# class RegisterAPIView(APIView):
+#     """
+#     Registration class
+    
+#     {
+#         "first_name": "XYZ",
+#         "last_name": "HTV",
+#         "username": "yxx",
+#         "email": "email",
+#         "password": "****"  
+#     }
+    
+#     """
+#     def post(self,request,format=None):
+#         data = request.data
+#         user=User.objects.create(
+#             first_name=data['first_name'],
+#             last_name=data['last_name'],
+#             username=data['username'],
+#             email=data['email'],
+#             password=data['password']
+#         )
+#         profile=Profile.objects.create(
+#             user=user
+#         )
+
+
+#         return Response(ProfileSerializer(profile).data, status=status.HTTP_201_CREATED)
+
+
+

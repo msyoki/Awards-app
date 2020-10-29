@@ -4,9 +4,12 @@
 <div class="container text-center"  >
     {% if user %}
     <h3>{{user.username}}</h3>
+    <h3>{{profile.profile.name}}</h3>
+    
     <h4><strong>Contacts:</strong> </h4>
     <a href="/accounts/password/change">Change Password</a>
     {% endif %}
+    
 </div>
 
 {%endblock%}
