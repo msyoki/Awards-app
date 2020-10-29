@@ -3,10 +3,10 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from .models import Profile,Project
-from .forms import NewProjectForm,ProfileForm
+from .forms import NewProjectForm,ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-
+from django.contrib.auth import authenticate
 from rest_framework import status
 from rest_framework.response import Response
 
@@ -24,26 +24,35 @@ def rate_project(request,project_id):
     return render(request,"awwards/project.html",{"project":project})
 
 @login_required(login_url='/accounts/login/') 
-def view_profile(request,user_id):
-    Current_user=request.user
-    user=User.objects.get(id=user_id)
-   
-    return render(request,"awwards/profile.html",{"user":user})
+def view_profile(request):
+    # user=request.user
+    profile=request.user.profile
+    form=ProfileUpdateForm(instance=profile)
+    if request.method == 'POST':
+        form = ProfileUpdateForm(request.POST, request.FILES,instance=profile)
+        if form.is_valid():
+            form.save()
+    #     return redirect('home')
+
+    # else:
+    #     form = ProfileUpdateForm()
+    return render(request,"awwards/profile.html",{"form": form})
 
 
-# def update_profile(self,user_id):
-#     Current_user=request.user
-#     user=User.objects.get(id=user_id)
-    
-#         if request.method == 'POST':
-#             form = ProfileForm(request.POST, request.FILES)
-#             if form.is_valid():
-#                 profile = form.save()
-#                 profile.save()
-#         return redirect('view-profile')
-#         else:
-#             form = ProfileForm()
-#         return render(request,"awwards/update_profile.html",{"form":form})
+def register(request):
+    if request.method == 'POST':
+        username=request.POST['username']
+        email=request.POST['email']
+        password1=request.POST['password1']
+        password2=request.POST['password2']
+        user = User.objects.create_user(username=username,email=email,password=password1)
+        user.save()
+        profile=Profile.objects.create(user=user,email=user.email)
+        
+        return redirect('login')
+    else:
+        return render(request,'registration/registration_form.html')
+
 
 
 @login_required(login_url='/accounts/login/') 
@@ -110,11 +119,12 @@ class ProjectList(APIView):
 #     def post(self,request,format=None):
 #         data = request.data
 #         user=User.objects.create(
-#             first_name=data['first_name'],
-#             last_name=data['last_name'],
 #             username=data['username'],
 #             email=data['email'],
-#             password=data['password']
+#             password1=data['password']
+#             password2=data['password']
+#             if password1 == password2:
+
 #         )
 #         profile=Profile.objects.create(
 #             user=user
