@@ -25,18 +25,20 @@ def rate_project(request,project_id):
 
 @login_required(login_url='/accounts/login/') 
 def view_profile(request):
-    # user=request.user
+    projects=request.user.profile.project_set.all() 
     profile=request.user.profile
+    
     form=ProfileUpdateForm(instance=profile)
+    
     if request.method == 'POST':
         form = ProfileUpdateForm(request.POST, request.FILES,instance=profile)
         if form.is_valid():
             form.save()
-    #     return redirect('home')
-
-    # else:
-    #     form = ProfileUpdateForm()
-    return render(request,"awwards/profile.html",{"form": form})
+    context={
+        'form':form,
+        'projects':projects,
+    }
+    return render(request,"awwards/profile.html",context=context)
 
 
 def register(request):
