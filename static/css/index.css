@@ -12,6 +12,10 @@
  
 }
 
+.checked {
+    color: orange;
+}
+
 
 .card-text{
     background-color: white;

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Profile,Project
+from .models import Profile,Project,Rating
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
@@ -9,4 +9,9 @@ class ProfileSerializer(serializers.ModelSerializer):
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model=Project
-        fields=('webimage','name','description','link','profile')
+        fields=('webimage','name','description','link','profile','no_of_ratings')
+
+class RatingSerializer(serializers.ModelSerializer):
+    class Meta:
+        models=Rating
+        fields = ('id','design','content','usability','user','project')
