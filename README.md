@@ -65,6 +65,8 @@ To run this project, use the live link in the GitHub repo:
 The live link to the project is als provided below.
 https://awwardsmsyoki.herokuapp.com/
 
+## Bugs
+Minor implimentation on rating funtionality pending
 
 ### License
 Copyright (c)2020 **Awwwards by Musyoki Mutua**
